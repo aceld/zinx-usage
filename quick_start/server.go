@@ -13,14 +13,8 @@ type PingRouter struct {
 
 //Ping Handle MsgId=1的路由处理方法
 func (r *PingRouter) Handle(request ziface.IRequest) {
-	//先读取客户端的数据
+	//读取客户端的数据
 	fmt.Println("recv from client : msgId=", request.GetMsgID(), ", data=", string(request.GetData()))
-
-	//再回写
-	err := request.GetConnection().SendMsg(2, []byte("pong...pong...pong[FromServer]"))
-	if err != nil {
-		fmt.Println(err)
-	}
 }
 
 func main() {
