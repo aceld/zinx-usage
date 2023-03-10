@@ -5,12 +5,14 @@ import (
 	"github.com/aceld/zinx/ziface"
 	"github.com/aceld/zinx/znet"
 	"time"
+	"zinx-usage/zinx_router/router-usage/client/router"
+	"zinx-usage/zinx_router/router-usage/common"
 )
 
 //客户端自定义业务
 func pingLoop(conn ziface.IConnection) {
 	for {
-		err := conn.SendMsg(1, []byte("Ping...Ping...Ping...[FromClient]"))
+		err := conn.SendMsg(common.MsgIdPing, []byte("Ping...Ping...Ping...[FromClient]"))
 		if err != nil {
 			fmt.Println(err)
 			break
@@ -32,6 +34,9 @@ func main() {
 
 	//设置链接建立成功后的钩子函数
 	client.SetOnConnStart(onClientStart)
+
+	//设置消息读取路由
+	client.AddRouter(common.MsgIdPong, &router.PongRouter{})
 
 	//启动客户端
 	client.Start()
