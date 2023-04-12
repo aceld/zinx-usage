@@ -42,11 +42,13 @@ func pingLoop(conn ziface.IConnection) {
 //创建连接的时候执行
 func onClientStart(conn ziface.IConnection) {
 	fmt.Println("onClientStart is Called ... ")
-	//go pingLoop(conn)
-	err := conn.SendMsg(1, []byte("Ping...Ping...Ping...[FromClient]"))
-	if err != nil {
-		fmt.Println(err)
-	}
+	go pingLoop(conn)
+	/*
+		err := conn.SendMsg(1, []byte("Ping...Ping...Ping...[FromClient]"))
+		if err != nil {
+			fmt.Println(err)
+		}
+	*/
 }
 
 func main() {
