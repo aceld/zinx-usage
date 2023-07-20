@@ -40,7 +40,7 @@ func main() {
 		MakeMsg:          myHeartBeatMsg,
 		OnRemoteNotAlive: myOnRemoteNotAlive,
 		Router:           &myHeartBeatRouter{},
-		HeadBeatMsgID:    uint32(myHeartBeatMsgID),
+		HeartBeatMsgID:   uint32(myHeartBeatMsgID),
 	})
 
 	s.Serve()
@@ -58,7 +58,7 @@ func main_userConf() {
 		MakeMsg:          myHeartBeatMsg,
 		OnRemoteNotAlive: myOnRemoteNotAlive,
 		Router:           &myHeartBeatRouter{},
-		HeadBeatMsgID:    uint32(myHeartBeatMsgID),
+		HeartBeatMsgID:   uint32(myHeartBeatMsgID),
 	})
 
 	s.Serve()
